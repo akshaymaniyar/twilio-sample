@@ -1,0 +1,13 @@
+logging:
+  level: INFO
+  loggers:
+    twilio: DEBUG
+
+server:
+  maxThreads: 2048
+  applicationConnectors:
+    - type: http
+      port: 4200
+  adminConnectors:
+    - type: http
+      port: 8008
