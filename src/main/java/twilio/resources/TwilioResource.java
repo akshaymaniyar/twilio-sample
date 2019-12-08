@@ -38,15 +38,16 @@ public class TwilioResource {
     @POST
     @Path("receiveMessage")
     @Produces("text/xml")
-    public String receiveMessage(@QueryParam(value = "MessageStatus") String messageStatus,
-                                 @QueryParam(value = "ApiVersion") String apiVersion,
-                                 @QueryParam(value = "SmsSid") String smsSid,
-                                 @QueryParam(value = "SmsStatus") String smsStatus,
-                                 @QueryParam(value = "To") String to,
-                                 @QueryParam(value = "From") String from,
-                                 @QueryParam(value = "MessageSid") String messageSid,
-                                 @QueryParam(value = "AccountSid") String accountSid) {
-        Body.Builder bodyBuilder = new Body.Builder("Message received successfully");
+    public String receiveMessage(@FormParam(value = "MessageStatus") String messageStatus,
+                                 @FormParam(value = "ApiVersion") String apiVersion,
+                                 @FormParam(value = "SmsSid") String smsSid,
+                                 @FormParam(value = "SmsStatus") String smsStatus,
+                                 @FormParam(value = "To") String to,
+                                 @FormParam(value = "From") String from,
+                                 @FormParam(value = "Body") String body,
+                                 @FormParam(value = "MessageSid") String messageSid,
+                                 @FormParam(value = "AccountSid") String accountSid) {
+        Body.Builder bodyBuilder = new Body.Builder("Following message was received: " + body);
         com.twilio.twiml.messaging.Message.Builder builder = new com.twilio.twiml.messaging.Message.Builder();
         builder.body(bodyBuilder.build());
 
